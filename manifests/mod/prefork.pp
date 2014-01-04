@@ -59,7 +59,7 @@ class apache::mod::prefork (
         notify  => Service['httpd'],
       }
       package { 'apache2-mpm-prefork':
-        ensure => present,
+        ensure => link,
       }
     }
     'freebsd' : {
