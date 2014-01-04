@@ -52,7 +52,8 @@ class apache::mod::prefork (
     }
     'debian': {
       file { "${apache::mod_enable_dir}/prefork.conf":
-        ensure  => ignore,
+        ensure  => link,
+        recurse => true,
         target  => "${apache::mod_dir}/prefork.conf",
         require => Exec["mkdir ${apache::mod_enable_dir}"],
         before  => File[$apache::mod_enable_dir],
