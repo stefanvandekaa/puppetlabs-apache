@@ -51,15 +51,15 @@ class apache::mod::prefork (
       }
     }
     'debian': {
+       package { 'apache2-mpm-prefork':
+            ensure => present,
+	  }
       file { "${apache::mod_enable_dir}/prefork.conf":
         ensure  => link,
         target  => "${apache::mod_dir}/prefork.conf",
         require => Exec["mkdir ${apache::mod_enable_dir}"],
         before  => File[$apache::mod_enable_dir],
         notify  => Service['httpd'],
-      }
-      package { 'apache2-mpm-prefork':
-        ensure => link,
       }
     }
     'freebsd' : {
